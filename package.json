@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
     "autoprefixer": "^10.4.13",
+    "bootstrap": "^5.2.3",
     "postcss-import": "^15.1.0",
     "postcss-scss": "^4.0.6",
     "rxjs": "~7.8.0",
