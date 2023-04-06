@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
 import { SettingComponent } from './setting/setting.component';
+import { AdminUserAddUserComponent } from './admin-user-add-user/admin-user-add-user.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SettingComponent } from './setting/setting.component';
     LoginComponent,
     AccueilComponent,
     AdminUserComponent,
-    SettingComponent
+    SettingComponent,
+    AdminUserAddUserComponent
   ],
   imports: [
     BrowserModule,
