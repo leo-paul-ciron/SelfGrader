@@ -35,13 +35,14 @@
 										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
 										Type
 									</th>
-									<th
-										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-										Créer le 
-									</th>
+									
 									<th
 										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
 										mail
+									</th>
+									<th
+										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+										Mot de passes
 									</th>
 									<th
 										class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -49,8 +50,9 @@
 									</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
+							<tbody *ngFor="let Utilisateur of Utilisateurs">
+								
+								<tr >
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<div class="flex items-center">
 											<div class="flex-shrink-0 w-10 h-10">
@@ -60,204 +62,21 @@
 											</div>
 												<div class="ml-3">
 													<p class="text-gray-900 whitespace-no-wrap">
-														Vera Carpenter
+														{{Utilisateur.nom}} {{Utilisateur.prenom}}
 													</p>
 												</div>
 											</div>
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">Enseignant</p>
+										<p class="text-gray-900 whitespace-no-wrap">{{Utilisateur.id_typeUtilisateur.nom}}</p>
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<p class="text-gray-900 whitespace-no-wrap">
-											
+											{{Utilisateur.email}}
 										</p>
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											43
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<span
-											class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-											<span aria-hidden
-												class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-										<span class="relative">Modifier</span>
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<div class="flex items-center">
-											<div class="flex-shrink-0 w-10 h-10">
-												<img class="w-full h-full rounded-full"
-													src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-													alt="" />
-											</div>
-												<div class="ml-3">
-													<p class="text-gray-900 whitespace-no-wrap">
-														Vera Carpenter
-													</p>
-												</div>
-											</div>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">Enseignant</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											43
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<span
-											class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-											<span aria-hidden
-												class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-										<span class="relative">Modifier</span>
-										</span>
-									</td>
-								</tr>							<tr>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<div class="flex items-center">
-											<div class="flex-shrink-0 w-10 h-10">
-												<img class="w-full h-full rounded-full"
-													src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-													alt="" />
-											</div>
-												<div class="ml-3">
-													<p class="text-gray-900 whitespace-no-wrap">
-														Vera Carpenter
-													</p>
-												</div>
-											</div>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">Enseignant</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											43
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<span
-											class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-											<span aria-hidden
-												class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-										<span class="relative">Modifier</span>
-										</span>
-									</td>
-								</tr>							<tr>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<div class="flex items-center">
-											<div class="flex-shrink-0 w-10 h-10">
-												<img class="w-full h-full rounded-full"
-													src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-													alt="" />
-											</div>
-												<div class="ml-3">
-													<p class="text-gray-900 whitespace-no-wrap">
-														Vera Carpenter
-													</p>
-												</div>
-											</div>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">Enseignant</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											43
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<span
-											class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-											<span aria-hidden
-												class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-										<span class="relative">Modifier</span>
-										</span>
-									</td>
-								</tr>							<tr>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<div class="flex items-center">
-											<div class="flex-shrink-0 w-10 h-10">
-												<img class="w-full h-full rounded-full"
-													src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-													alt="" />
-											</div>
-												<div class="ml-3">
-													<p class="text-gray-900 whitespace-no-wrap">
-														Vera Carpenter
-													</p>
-												</div>
-											</div>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">Enseignant</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											43
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<span
-											class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-											<span aria-hidden
-												class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-										<span class="relative">Modifier</span>
-										</span>
-									</td>
-								</tr>							<tr>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<div class="flex items-center">
-											<div class="flex-shrink-0 w-10 h-10">
-												<img class="w-full h-full rounded-full"
-													src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-													alt="" />
-											</div>
-												<div class="ml-3">
-													<p class="text-gray-900 whitespace-no-wrap">
-														Vera Carpenter
-													</p>
-												</div>
-											</div>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">Enseignant</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											43
-										</p>
+										<input readonly type="password" class="text-gray-900 whitespace-no-wrap" value={{Utilisateur.motDePasse}}/>
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<span
@@ -292,6 +111,6 @@
 			</div>
 		</div>
 	<div *ngIf="afficherFormulaireAddUserBool">
-			<app-admin-user-add-user> </app-admin-user-add-user>
+			<app-admin-user-add-user [afficherFormulaireAddUserBool]="afficherFormulaireAddUserBool" (AfficherPageAdminEventEmitter)="onSubmitFormAddUser($event)"> </app-admin-user-add-user>
 	</div>
 </div>
