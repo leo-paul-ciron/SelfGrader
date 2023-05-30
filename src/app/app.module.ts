@@ -10,6 +10,13 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
 import { SettingComponent } from './setting/setting.component';
 import { AdminUserAddUserComponent } from './admin-user-add-user/admin-user-add-user.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { CreationCompetenceComponent } from './creation-competence/creation-competence.component';
+import { CreationCompetenceAddCompetenceComponent } from './creation-competence-add-competence/creation-competence-add-competence.component';
+import { CreationCoursComponent } from './creation-cours/creation-cours.component';
+import { CreationCoursAddCourComponent } from './creation-cours-add-cour/creation-cours-add-cour.component';
+import { VisualisationCourInscriptComponent } from './visualisation-cour-inscript/visualisation-cour-inscript.component';
+import { VisualisationCompetenceComponent } from './visualisation-competence/visualisation-competence.component';
 
 
 
@@ -20,7 +27,14 @@ import { HttpClientModule } from '@angular/common/http';
     AccueilComponent,
     AdminUserComponent,
     SettingComponent,
-    AdminUserAddUserComponent
+    AdminUserAddUserComponent,
+    InscriptionComponent,
+    CreationCompetenceComponent,
+    CreationCompetenceAddCompetenceComponent,
+    CreationCoursComponent,
+    CreationCoursAddCourComponent,
+    VisualisationCourInscriptComponent,
+    VisualisationCompetenceComponent
   ],
   imports: [
     BrowserModule,

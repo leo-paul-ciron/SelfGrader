@@ -30,9 +30,22 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss"
-            ],
+            "src/styles.scss",
+            {
+              "input": "node_modules/tailwindcss/base.css"
+            },
+            {
+              "input": "node_modules/tailwindcss/components.css"
+            },
+            {
+              "input": "node_modules/tailwindcss/utilities.css"
+            }
+          ], 
+        "stylePreprocessorOptions": {
+            "includePaths": [
+              "node_modules"
+            ]
+          },
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
