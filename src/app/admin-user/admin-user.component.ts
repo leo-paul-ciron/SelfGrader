@@ -3,6 +3,9 @@ import { AdminUserAddUserComponent } from '../admin-user-add-user/admin-user-add
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmDialogDeleteComponent } from '../confirm-dialog-delete/confirm-dialog-delete.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-user',
@@ -12,9 +15,7 @@ import jwt_decode from 'jwt-decode';
 
 export class AdminUserComponent {
     
-  constructor(private apiService: ApiService, private router: Router) { }
-
-
+  constructor(private apiService: ApiService, private router: Router, private dialog: MatDialog) { }
 
   typeCompte : any = ""
 
@@ -64,7 +65,43 @@ export class AdminUserComponent {
         },
       });
     }
-     
 
+    openConfirmationDialog(idUtilisateur : string): void {
+    
+    const dialogRef = this.dialog.open(ConfirmDialogDeleteComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Effectuez l'action de suppression ici
+        this.apiService.SupressionUserAdmin(idUtilisateur).subscribe({
+          next: (data) => {
+            console.log(data);
+          },
+          error: (error) => {
+            Swal.fire("Erreur lors de la suppression de l'utilisateur!");
+          },
+          complete: () => {
+            this.apiService.GetUser().subscribe({
+              next: (data) => {
+                this.Utilisateurs = data
+                console.log(this.Utilisateurs);
+              },
+            });
+            Swal.fire('Utilisateur supprimé!');
+          }
+        });
+      }
+    });
+  }
+     
+    delete(recupUser : string)
+    {
+      alert("delete : " + recupUser)
+    }
+
+    modif(recupUser : string)
+    {
+      alert("modif : " + recupUser)
+    }
 
 }

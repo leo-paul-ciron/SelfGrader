@@ -25,7 +25,7 @@ export class AdminUserAddUserComponent {
   email : string = ''
   motDePasse : string = ''
   idTypeUtilisateur : string = ''
-  id_admin : string = '642c69407d4ce3173a4103b3'
+ 
 
  
 
@@ -43,19 +43,14 @@ export class AdminUserAddUserComponent {
 
   onSubmitAddUser(formulaire : any)
   {   
-
-      formulaire.value.id_admin = this.id_admin;
-
+      //création d'un nouvelle utilisateur
       const utilisateur = {
         nom: formulaire.value.nom,
         prenom: formulaire.value.prenom,
         email: formulaire.value.email,
         motDePasse: formulaire.value.motDePasse,
-        idTypeUtilisateur: formulaire.value.idTypeUtilisateur,
-        id_admin: this.id_admin
+        idTypeUtilisateur: formulaire.value.idTypeUtilisateur
       };
-  
-      console.log(utilisateur);
 
       //appel du service d'ajout d'utilisateur
       this.apiService.AddUser(utilisateur).subscribe({

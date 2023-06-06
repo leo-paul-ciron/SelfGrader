@@ -17,7 +17,10 @@ import { CreationCoursComponent } from './creation-cours/creation-cours.componen
 import { CreationCoursAddCourComponent } from './creation-cours-add-cour/creation-cours-add-cour.component';
 import { VisualisationCourInscriptComponent } from './visualisation-cour-inscript/visualisation-cour-inscript.component';
 import { VisualisationCompetenceComponent } from './visualisation-competence/visualisation-competence.component';
-
+import { EtudiantCompetenceComponent } from './etudiant-competence/etudiant-competence.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmDialogDeleteComponent } from './confirm-dialog-delete/confirm-dialog-delete.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -34,14 +37,18 @@ import { VisualisationCompetenceComponent } from './visualisation-competence/vis
     CreationCoursComponent,
     CreationCoursAddCourComponent,
     VisualisationCourInscriptComponent,
-    VisualisationCompetenceComponent
+    VisualisationCompetenceComponent,
+    EtudiantCompetenceComponent,
+    ConfirmDialogDeleteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

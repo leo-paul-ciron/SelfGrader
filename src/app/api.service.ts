@@ -17,22 +17,22 @@ export class ApiService {
    * 
    */
   AddUser(utilisateurJson: any) {
-      return this.http.post('http://localhost:3000/admin/addUser', utilisateurJson);
+      return this.http.post('http://localhost:3000/admin/addUser', utilisateurJson, { withCredentials: true });
   }
 
   GetUser()
   {
-      return this.http.get('http://localhost:3000/admin');
+      return this.http.get('http://localhost:3000/admin', { withCredentials: true });
   }
 
   Login(Compte: any)
   {
-      return this.http.post('http://localhost:3000/connexion', Compte);
+      return this.http.post('http://localhost:3000/connexion', Compte,{ withCredentials: true });
   }
 
-  GetCompetence()
+  GetCompetence(competenceInfo : any)
   {
-    return this.http.get("http://localhost:3000/competence");
+    return this.http.get("http://localhost:3000/competence", {params : competenceInfo, withCredentials: true});
   }
 
    /**
@@ -44,12 +44,12 @@ export class ApiService {
    * 
    */
   AddCompetence(competenceJson: any) {
-    return this.http.post('http://localhost:3000/competence/add', competenceJson);
+    return this.http.post('http://localhost:3000/competence/add', competenceJson, { withCredentials: true });
   }
 
   GetCours()
   {
-    return this.http.get("http://localhost:3000/cour");
+    return this.http.get("http://localhost:3000/cour", { withCredentials: true });
   }
 
    /**
@@ -61,26 +61,38 @@ export class ApiService {
    * 
    */
   AddCour(courJson: any) {
-    return this.http.post('http://localhost:3000/cour/add', courJson);
+    return this.http.post('http://localhost:3000/cour/add', courJson, { withCredentials: true });
   }
 
   InscriptionCour(inscriptionJson : any)
   {
-    return this.http.post("http://localhost:3000/inscription/:id", inscriptionJson);
+    return this.http.post("http://localhost:3000/inscription/:id", inscriptionJson, { withCredentials: true });
   }
 
   VisualisationCour(etudiantJson : any)
   {
-    return this.http.get('http://localhost:3000/cour/inscrit', { params: etudiantJson });
+    return this.http.get('http://localhost:3000/cour/inscrit', { params: etudiantJson, withCredentials: true }, );
   }
 
   VisualisationCompetence(resultatInfo : any )
   {
-    return this.http.get('http://localhost:3000/etudiant/projet/competence', {params : resultatInfo});
+    return this.http.get('http://localhost:3000/etudiant/projet/competence', {params : resultatInfo, withCredentials: true});
   }
 
   ModifCompetence(resultatInfo : any)
-  {
-    return this.http.put('http://localhost:3000/etudiant/compente/maitrisse', {params : resultatInfo});
+  { 
+    return this.http.post('http://localhost:3000/modif/resultat', resultatInfo, { withCredentials: true });
   }
+
+  CompetenceEtudiant(etudiantInfo : any)
+  { 
+    return this.http.get('http://localhost:3000/etudiant/competence',{params :  etudiantInfo, withCredentials: true});
+  }
+
+  SupressionUserAdmin(utilisateurInfo : any)
+  {
+    const url = `http://localhost:3000/admin/deleteUser/${utilisateurInfo}`;
+    return this.http.delete(url, { withCredentials: true })
+  }
+
 }

@@ -18,6 +18,8 @@ export class CreationCoursAddCourComponent {
   id_admin : string = '64523a3ba975dc50e7e3767d'
   typeCompte : any = ""
   Competences : any ;
+
+  idUtilisateur : string = ""
    //on récupère du parent
    @Input() afficherFormulaireAddCoursBool: boolean = true;
 
@@ -34,8 +36,11 @@ export class CreationCoursAddCourComponent {
     const TokenDecode : any = jwt_decode(Token)
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase()
+    this.idUtilisateur = TokenDecode.utilisateur
 
-    this.apiService.GetCompetence().subscribe({
+    
+
+    this.apiService.GetCompetence({idProf : this.idUtilisateur}).subscribe({
       next: (data) => {
         this.Competences = data
         console.log(this.Competences);

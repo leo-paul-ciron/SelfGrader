@@ -15,6 +15,7 @@ export class CreationCompetenceComponent {
   typeCompte : any = ""
   afficherFormulaireAddCompetenceBool = false;
   Competences : any = "";
+  idUtilisateur : string = ""
 
   ngOnInit() {
     //récupération du type de compte dans la localStorage
@@ -22,8 +23,9 @@ export class CreationCompetenceComponent {
     const TokenDecode : any = jwt_decode(Token)
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase();
+    this.idUtilisateur = TokenDecode.utilisateur
 
-    this.apiService.GetCompetence().subscribe({
+    this.apiService.GetCompetence({idProf : this.idUtilisateur}).subscribe({
       next: (data) => {
         this.Competences = data
         console.log(this.Competences);
@@ -40,7 +42,11 @@ export class CreationCompetenceComponent {
   onSubmitFormAddCompetence(event: boolean)
   {
     this.afficherFormulaireAddCompetenceBool = event;
-    this.apiService.GetCompetence().subscribe({
+    const Token : any = localStorage.getItem("token");
+    const TokenDecode : any = jwt_decode(Token)
+    this.idUtilisateur = TokenDecode.utilisateur
+    
+    this.apiService.GetCompetence({idProf : this.idUtilisateur}).subscribe({
       next: (data) => {
         this.Competences = data
         console.log(this.Competences);

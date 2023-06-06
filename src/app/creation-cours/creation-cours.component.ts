@@ -14,6 +14,7 @@ export class CreationCoursComponent {
   typeCompte : any = ""
   afficherFormulaireAddCoursBool = false;
   Cours : any = "";
+  idUtilisateur : string = ""
 
   ngOnInit() {
     //récupération du type de compte dans la localStorage
@@ -21,6 +22,7 @@ export class CreationCoursComponent {
     const TokenDecode : any = jwt_decode(Token)
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase();
+    this.idUtilisateur = TokenDecode.utilisateur
 
     this.apiService.GetCours().subscribe({
       next: (data) => {

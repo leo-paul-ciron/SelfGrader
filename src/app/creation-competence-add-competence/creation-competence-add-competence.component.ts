@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ApiService } from '../api.service';
 import Swal from 'sweetalert2';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-creation-competence-add-competence',
@@ -32,13 +33,21 @@ export class CreationCompetenceAddCompetenceComponent {
   nomCompetence : string = ''
   niveauCompetence : number = 0
   id_admin : string = '64523a3ba975dc50e7e3767d'
+  typeCompte : string = ""
+  idUtilisateur : string = ""
 
   onSubmitAddCompetence(formulaire : any)
   {   
 
       formulaire.value.id_admin = this.id_admin;
+      const Token : any = localStorage.getItem("token");
+      const TokenDecode : any = jwt_decode(Token)
+      this.typeCompte = TokenDecode.type;
+      this.typeCompte = this.typeCompte.toLowerCase();
+      this.idUtilisateur = TokenDecode.utilisateur;
 
       const competence = {
+        idProf : this.idUtilisateur,
         nomCompetence: formulaire.value.nomCompetence,
         niveauCompetence: formulaire.value.niveauCompetence,
         id_admin: this.id_admin
