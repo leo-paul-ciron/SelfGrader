@@ -40,7 +40,7 @@ export class CreationCoursAddCourComponent {
 
     
 
-    this.apiService.GetCompetence({idProf : this.idUtilisateur}).subscribe({
+    this.apiService.GetCompetence().subscribe({
       next: (data) => {
         this.Competences = data
         console.log(this.Competences);
@@ -102,12 +102,12 @@ export class CreationCoursAddCourComponent {
           console.log(data);
         },
         error: (error) => {
-          Swal.fire("Erreur lors de l'ajout de la compétence!");
+          Swal.fire("Erreur lors de l'ajout du cour !");
           console.log(error)
         },
         complete: () => {
           this.FormAddCompetenceDisparition()
-          Swal.fire('Compétence Ajoutée!');
+          Swal.fire('Cour Ajouté !');
         }
       });
   }

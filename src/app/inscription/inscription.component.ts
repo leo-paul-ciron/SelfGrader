@@ -27,7 +27,7 @@ export class InscriptionComponent {
     this.typeCompte = this.typeCompte.toLowerCase();
     this.idUtilisateur = TokenDecode.utilisateur
 
-    this.apiService.GetCours().subscribe({
+    this.apiService.GetCoursEtudiant().subscribe({
       next: (data) => {
         this.Cours = data
         console.log(this.Cours);

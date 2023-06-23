@@ -25,8 +25,10 @@ export class AdminUserComponent {
     this.router.navigate(['/']);
   }
 
-    afficherFormulaireAddUserBool = false;
+    afficherFormulaireAddUserBool : boolean = false;
     Utilisateurs : any = "";
+    affichageModifUser : boolean = false
+    utilisateurModif : string = ""
 
     ngOnInit() {
       
@@ -101,7 +103,9 @@ export class AdminUserComponent {
 
     modif(recupUser : string)
     {
-      alert("modif : " + recupUser)
+      this.affichageModifUser = true; 
+      this.afficherFormulaireAddUserBool = true
+      this.utilisateurModif = recupUser
     }
 
 }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { ApiService } from '../api.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmDialogDeleteComponent } from '../confirm-dialog-delete/confirm-dialog-delete.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class VisualisationCourInscriptComponent {
 
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(private router: Router, private apiService: ApiService, private dialog: MatDialog) { }
 
   typeCompte : any = ""
   idUtilisateur : string = ""
@@ -29,7 +31,8 @@ export class VisualisationCourInscriptComponent {
     this.typeCompte = this.typeCompte.toLowerCase();
     this.idUtilisateur = TokenDecode.utilisateur;
     console.log(this.idUtilisateur)
-    this.apiService.VisualisationCour({idEtudiant : this.idUtilisateur}).subscribe({
+
+    this.apiService.VisualisationCour().subscribe({
       next: (data) => {
         this.Cours = data
         console.log(this.Cours);
@@ -44,6 +47,34 @@ export class VisualisationCourInscriptComponent {
     this.ProjetId = idProjet;
     this.affichageCompetence = true
    
+  }
+
+  openConfirmationDialog(idProjet : string): void {
+    
+    const dialogRef = this.dialog.open(ConfirmDialogDeleteComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Effectuez l'action de suppression ici
+        this.apiService.Desinscription(idProjet).subscribe({
+          next: (data) => {
+            console.log(data);
+          },
+          error: (error) => {
+            Swal.fire("Erreur lors de la suppression de l'utilisateur!");
+          },
+          complete: () => {
+            this.apiService.VisualisationCour().subscribe({
+              next: (data) => {
+                this.Cours = data
+                console.log(this.Cours);
+              },
+            });
+            Swal.fire('Désinscription réussi!');
+          }
+        });
+      }
+    });
   }
 
   logout()

@@ -11,24 +11,62 @@ import jwt_decode from 'jwt-decode';
 export class CreationCompetenceAddCompetenceComponent {
 
   constructor(private apiService: ApiService) { }
-   //on récupère du parent
-   @Input() afficherFormulaireAddCompetenceBool: boolean = true;
+  //on récupère du parent
+  @Input() afficherFormulaireAddCompetenceBool: boolean = true;
 
-   /*
-   * on créer un EventEmiter pour avertir le composant parent du changement
-   * de valeur de la variable.
-   */
-   @Output() AfficherPageAdminEventEmitter = new EventEmitter<boolean>();
+  /*
+  * on créer un EventEmiter pour avertir le composant parent du changement
+  * de valeur de la variable.
+  */
+  @Output() AfficherPageAdminEventEmitter = new EventEmitter<boolean>();
 
-    // Affiche conditionel du formulaire
-    //lors du click sur le boutton le formulaire apparait.
-    FormAddCompetenceDisparition()
-    { 
-      this.afficherFormulaireAddCompetenceBool = false; 
+  Competences : any = null
 
-      //on envois l'event de changement de la variable
-      this.AfficherPageAdminEventEmitter.emit(this.afficherFormulaireAddCompetenceBool);
-    } 
+  ngOnInit()
+  {
+     //récupération du type de compte dans la localStorage
+     const Token : any = localStorage.getItem("token");
+     const TokenDecode : any = jwt_decode(Token)
+     this.typeCompte = TokenDecode.type;
+     this.typeCompte = this.typeCompte.toLowerCase()
+     this.idUtilisateur = TokenDecode.utilisateur
+ 
+     
+ 
+     this.apiService.GetCompetence().subscribe({
+       next: (data) => {
+         this.Competences = data
+         console.log(this.Competences);
+       },
+     });
+  }
+
+
+  // Affiche conditionel du formulaire
+  //lors du click sur le boutton le formulaire apparait.
+  FormAddCompetenceDisparition()
+  { 
+    this.afficherFormulaireAddCompetenceBool = false; 
+
+    //on envois l'event de changement de la variable
+    this.AfficherPageAdminEventEmitter.emit(this.afficherFormulaireAddCompetenceBool);
+  } 
+
+  selectedValues: string[] = [];
+
+  onCheckboxChange (event: any, value: string): void
+  {
+    const index = this.selectedValues.indexOf(value);
+
+    if (index !== -1) {
+      this.selectedValues.splice(index, 1);
+    }
+    else{
+      alert(value);
+      this.selectedValues.push(value);
+    }
+
+  }
  
   nomCompetence : string = ''
   niveauCompetence : number = 0
@@ -50,9 +88,10 @@ export class CreationCompetenceAddCompetenceComponent {
         idProf : this.idUtilisateur,
         nomCompetence: formulaire.value.nomCompetence,
         niveauCompetence: formulaire.value.niveauCompetence,
-        id_admin: this.id_admin
+        id_admin: this.id_admin,
+        selectedValue : this.selectedValues
       };
-  
+
       console.log(competence);
 
       //appel du service d'ajout d'utilisateur

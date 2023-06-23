@@ -116,8 +116,12 @@
 					</div>
 				</div>
 			</div>
-		<div *ngIf="afficherFormulaireAddUserBool">
-				<app-admin-user-add-user [afficherFormulaireAddUserBool]="afficherFormulaireAddUserBool" (AfficherPageAdminEventEmitter)="onSubmitFormAddUser($event)"> </app-admin-user-add-user>
+		<div *ngIf="afficherFormulaireAddUserBool && !affichageModifUser">
+			<app-admin-user-add-user [afficherFormulaireAddUserBool]="afficherFormulaireAddUserBool" (AfficherPageAdminEventEmitter)="onSubmitFormAddUser($event)"> </app-admin-user-add-user>
+		</div>
+
+		<div *ngIf="affichageModifUser && afficherFormulaireAddUserBool">
+			<app-admin-modif-user  (AfficherPageAdminEventEmitter)="onSubmitFormAddUser($event)" [affichageModifUser]="affichageModifUser" [utilisateurModif]="utilisateurModif"/>
 		</div>
 	</div>
 </div>

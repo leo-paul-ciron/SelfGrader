@@ -34,17 +34,17 @@
                                             </th>
                                             <th
                                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                Type
-                                            </th>
-                                            
-                                            <th
-                                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                                 Niveau
                                             </th>
                                             <th
+                                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                            modifier
+                                        </th>
+                                            <th
                                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                modifier
+                                                Supprimer
                                             </th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody *ngFor="let competence of Competences">
@@ -59,24 +59,30 @@
                                                         </div>
                                                     </div>
                                             </td>
-                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                <p class="text-gray-900 whitespace-no-wrap">
-                                                    
-                                                </p>
-                                            </td>
+                                            
                                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                 <p class="text-gray-900 whitespace-no-wrap">
                                                     {{competence.niveau}}
                                                 </p>
                                             </td>
                                            
-                                          
+                                           
+
                                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                 <span
                                                     class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                                     <span aria-hidden
                                                         class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                                <span class="relative">Modifier</span>
+                                                <button type="button" (click)="modifCompetence(competence._id)" class="relative">Modifier</button>
+                                                </span>
+                                            </td>
+
+                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <span
+                                                    class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                                    <span aria-hidden
+                                                        class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                                <button mat-raised-button (click)="openConfirmationDialog(competence._id)" class="relative">Supprimer</button>
                                                 </span>
                                             </td>
                                         </tr>
@@ -103,8 +109,15 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="afficherFormulaireAddCompetenceBool">
+               
+        
+                <div *ngIf="affichageModifCompetence && afficherFormulaireAddCompetenceBool">
+                    <app-competence-modification (AfficherPageAdminEventEmitter)="onSubmitFormAddCompetence($event)" [affichageModifCompetence]="affichageModifCompetence" [competenceModif]="competenceModif"/>
+                </div>
+
+                <div *ngIf="afficherFormulaireAddCompetenceBool && !affichageModifCompetence">
                     <app-creation-competence-add-competence [afficherFormulaireAddCompetenceBool]="afficherFormulaireAddCompetenceBool " (AfficherPageAdminEventEmitter)="onSubmitFormAddCompetence($event)"> </app-creation-competence-add-competence>
                 </div>
+
         </div>
     </div>

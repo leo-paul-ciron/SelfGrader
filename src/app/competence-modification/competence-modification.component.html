@@ -2,8 +2,8 @@
 <div>
     <div class="flex items-center justify-center p-12">
         <div class="mx-auto w-full max-w-[550px]">
-        <h1 class="mb-6 text-2xl border-b-2"> Création d'une compétence </h1>
-        <form #monFormulaire="ngForm" (ngSubmit)="onSubmitAddCompetence(monFormulaire)">
+        <h1 class="mb-6 text-2xl border-b-2"> Modification d'une compétence </h1>
+        <form #monFormulaire="ngForm" (ngSubmit)="onSubmitModifCompetence(monFormulaire)">
             <div class="-mx-3 flex flex-wrap">
             <div class="w-full px-3 sm:w-1/2">
                 <div class="mb-5">
@@ -19,6 +19,7 @@
                     id="nomCompetence"
                     placeholder="Nom competence"
                     (ngModel)="nomCompetence"
+                    [value]="Competence.nom"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
                 </div>
@@ -26,7 +27,7 @@
             <div class="w-full px-3 sm:w-1/2">
                 <div class="mb-5">
                 <label
-                    for="prenom"
+                    for="niveau"
                     class="mb-3 block text-base font-medium text-[#07074D]"
                 >
                     Niveau
@@ -37,44 +38,19 @@
                     id="niveauCompetence"
                     placeholder="Niveau competence"
                     (ngModel)="niveauCompetence"
+                    [value]="Competence.niveau"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
                 </div>
             </div>
-            <div class="w-full px-3 sm:w-1/2">
-                <div class="mb-5">
-                <label
-                    for="prenom"
-                    class="mb-3 block text-base font-medium text-[#07074D]"
-                >
-                    Compétences liées : 
-                </label>
-                <div *ngFor="let competence of Competences" class="flex row">
-                    <label
-                        for="prenom"
-                        class="mb-3 block text-base font-medium text-[#07074D] mr-4"
-                    >
-                        {{competence.nom}} 
-                    </label>
-                    
-                    <input 
-                        type="checkbox"
-                        name="{{competence.nom}}"
-                        id="{{competence.nom}}"
-                        [value]="competence._id" 
-                        (change)="onCheckboxChange($event, competence._id)"
-                        class="rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    />
-                </div>
-                </div>
-            </div>
+          
             </div>
             <div>
                 <button
                     type="submit"
                     class="rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"    
                 >
-                    Créer
+                    Modifier
                 </button>
             </div>
         </form>

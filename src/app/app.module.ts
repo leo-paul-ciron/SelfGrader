@@ -21,6 +21,10 @@ import { EtudiantCompetenceComponent } from './etudiant-competence/etudiant-comp
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogDeleteComponent } from './confirm-dialog-delete/confirm-dialog-delete.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AdminModifUserComponent } from './admin-modif-user/admin-modif-user.component';
+import { UserGestionCompteComponent } from './user-gestion-compte/user-gestion-compte.component';
+import { EnseignantEtudiantInscritComponent } from './enseignant-etudiant-inscrit/enseignant-etudiant-inscrit.component';
+import { CompetenceModificationComponent } from './competence-modification/competence-modification.component';
 
 
 @NgModule({
@@ -39,7 +43,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     VisualisationCourInscriptComponent,
     VisualisationCompetenceComponent,
     EtudiantCompetenceComponent,
-    ConfirmDialogDeleteComponent
+    ConfirmDialogDeleteComponent,
+    AdminModifUserComponent,
+    UserGestionCompteComponent,
+    EnseignantEtudiantInscritComponent,
+    CompetenceModificationComponent
   ],
   imports: [
     BrowserModule,

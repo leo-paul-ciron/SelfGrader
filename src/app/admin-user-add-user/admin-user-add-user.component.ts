@@ -42,7 +42,7 @@ export class AdminUserAddUserComponent {
   } 
 
   onSubmitAddUser(formulaire : any)
-  {   
+  {    
       //création d'un nouvelle utilisateur
       const utilisateur = {
         nom: formulaire.value.nom,

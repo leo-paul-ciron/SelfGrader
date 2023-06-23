@@ -11,6 +11,8 @@ export class AccueilComponent {
 
   typeCompte : any = ""
   Page : string = ""
+  Nom : string = ""
+  Prenom : string = ""
 
   constructor(private router: Router) { }
 
@@ -23,6 +25,8 @@ export class AccueilComponent {
     const TokenDecode : any = jwt_decode(Token)
     this.typeCompte = TokenDecode.type;
     this.typeCompte = this.typeCompte.toLowerCase()
+    this.Nom = TokenDecode.nom
+    this.Prenom = TokenDecode.prenom
   }
 
   logout()

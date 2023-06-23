@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { ApiService } from '../api.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmDialogDeleteComponent } from '../confirm-dialog-delete/confirm-dialog-delete.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-creation-competence',
@@ -10,12 +13,19 @@ import { ApiService } from '../api.service';
 })
 export class CreationCompetenceComponent {
   
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(private router: Router, private apiService: ApiService, private dialog: MatDialog) { }
 
   typeCompte : any = ""
   afficherFormulaireAddCompetenceBool = false;
   Competences : any = "";
+  Lie : any = null;
   idUtilisateur : string = ""
+  tableauId : any = []
+
+  tableauLie : any = []
+
+  affichageModifCompetence : boolean = false
+  competenceModif : string = ""
 
   ngOnInit() {
     //récupération du type de compte dans la localStorage
@@ -25,13 +35,11 @@ export class CreationCompetenceComponent {
     this.typeCompte = this.typeCompte.toLowerCase();
     this.idUtilisateur = TokenDecode.utilisateur
 
-    this.apiService.GetCompetence({idProf : this.idUtilisateur}).subscribe({
+    this.apiService.GetCompetence().subscribe({
       next: (data) => {
-        this.Competences = data
-        console.log(this.Competences);
+        this.Competences = data   
       },
     });
-
   }
   
   affichageFormAddCompetence()
@@ -46,12 +54,46 @@ export class CreationCompetenceComponent {
     const TokenDecode : any = jwt_decode(Token)
     this.idUtilisateur = TokenDecode.utilisateur
     
-    this.apiService.GetCompetence({idProf : this.idUtilisateur}).subscribe({
+    this.apiService.GetCompetence().subscribe({
       next: (data) => {
         this.Competences = data
         console.log(this.Competences);
       },
     });
+  }
+
+  openConfirmationDialog(idCompetence : string): void {
+    
+    const dialogRef = this.dialog.open(ConfirmDialogDeleteComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Action de suppression
+        this.apiService.SuppressionCompetence(idCompetence).subscribe({
+          next: (data) => {
+            console.log(data);
+          },
+          error: (error) => {
+            Swal.fire("Erreur lors de la suppression de la compétence!");
+          },
+          complete: () => {
+            this.apiService.GetCompetence().subscribe({
+              next: (data) => {
+                this.Competences = data   
+              },
+            });
+            Swal.fire('Compétence supprimé!');
+          }
+        });
+      }
+    });
+  }
+
+  modifCompetence(idCompetence : string)
+  {
+      this.affichageModifCompetence = true; 
+      this.afficherFormulaireAddCompetenceBool = true
+      this.competenceModif = idCompetence
   }
 
   logout()
